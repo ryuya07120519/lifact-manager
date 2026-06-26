@@ -6,51 +6,136 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="LIFACT Manager">
 <meta name="theme-color" content="#111111">
-<title>LIFACT Manager</title>
+<title>LIFACT Manager Ver.2</title>
 <style>
-:root{--bg:#111;--card:#1b1b1d;--card2:#252529;--text:#fff;--muted:#aaa;--accent:#ff7a00;--danger:#ff4d4d;--ok:#27d17f;--warn:#ffd24a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;padding-bottom:24px}
-header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px;background:linear-gradient(180deg,#000,#151515);border-bottom:1px solid #333}
+:root{--bg:#0e0e0f;--card:#1b1b1f;--panel:#25252b;--text:#fff;--muted:#aaa;--accent:#ff7a00;--danger:#ff4d4d;--ok:#27d17f;--warn:#ffd24a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;padding-bottom:28px}
+header{position:sticky;top:0;z-index:10;background:#000;border-bottom:1px solid #333;padding:14px;display:flex;justify-content:space-between;align-items:center}
 .brand{color:var(--accent);font-weight:900;letter-spacing:.08em;font-size:13px}h1{font-size:18px;margin:2px 0 0}h2{font-size:17px;margin:0 0 12px}
-main{padding:12px;max-width:760px;margin:0 auto}.card{background:var(--card);border:1px solid #333;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{font-size:13px;color:var(--muted)}
-input,select,textarea{width:100%;margin-top:6px;background:#0f0f10;color:#fff;border:1px solid #444;border-radius:12px;padding:12px;font-size:16px}
-button{border:0;border-radius:12px;padding:11px 13px;background:#333;color:#fff;font-weight:800;font-size:14px}.primary{background:var(--accent);color:#111}.ghost{background:#222;border:1px solid #444;color:#ddd}.wide{width:100%;margin-top:12px}
-.timerBox{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:14px}.timer{font-size:44px;font-weight:900;line-height:1;color:var(--accent)}.sub,.hint{color:var(--muted);font-size:13px;margin:4px 0 10px}.timerBtns{display:grid;gap:8px;min-width:116px}
-.nameRow{display:grid;grid-template-columns:42px 1fr;gap:8px;align-items:center;margin:7px 0}.num{background:var(--card2);border-radius:12px;text-align:center;padding:12px 0;color:var(--accent);font-weight:900}
-.status{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:10px}.players{display:grid;gap:8px}
-.player{display:grid;grid-template-columns:48px 1fr 66px 30px;align-items:center;gap:8px;padding:10px;border-radius:14px;background:var(--card2);border:1px solid #36363a}.player.on{border-color:var(--accent);background:#2b2118}
-.badge{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#111;color:var(--accent);font-weight:900;border:1px solid #444}.name{font-weight:800}.mins{font-size:19px;font-weight:900;text-align:right}.chk{width:24px;height:24px}
-.low .mins{color:var(--danger)}.mid .mins{color:var(--warn)}.good .mins{color:var(--ok)}
-.rec{display:flex;justify-content:space-between;background:var(--card2);padding:12px;border-radius:12px;margin:7px 0}.rowBtns{display:flex;gap:8px;margin-bottom:10px}textarea{height:220px;font-size:13px;line-height:1.45}footer{text-align:center;color:#777;font-size:12px;padding:14px}
+main{max-width:760px;margin:auto;padding:12px}.card{background:var(--card);border:1px solid #333;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+button{border:0;border-radius:13px;padding:12px 14px;background:#333;color:white;font-weight:900;font-size:15px}.primary{background:var(--accent);color:#111}.danger{background:var(--danger);color:white}.ghost{background:#222;border:1px solid #444;color:#ddd}.wide{width:100%}
+input,select,textarea{width:100%;background:#0f0f10;color:#fff;border:1px solid #444;border-radius:12px;padding:12px;font-size:16px}
+.timer{font-size:52px;color:var(--accent);font-weight:900;line-height:1}.sub,.hint{color:var(--muted);font-size:13px}.topBtns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.status{display:flex;justify-content:space-between;gap:8px;color:#aaa;font-size:13px;margin-bottom:10px}.pill{background:#111;border:1px solid #444;border-radius:999px;padding:7px 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.list{display:grid;gap:8px}.player{background:var(--panel);border:1px solid #3a3a40;border-radius:14px;padding:10px;display:grid;grid-template-columns:42px 1fr 62px;gap:8px;align-items:center}
+.badge{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#111;border:1px solid #444;color:var(--accent);font-weight:900}.name{font-weight:900}.mins{text-align:right;font-weight:900;font-size:18px}.on{border-color:var(--accent);background:#2b2118}.low .mins{color:var(--danger)}.mid .mins{color:var(--warn)}.good .mins{color:var(--ok)}
+.swapBox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.swapBox label{font-size:13px;color:#aaa}.log{max-height:160px;overflow:auto;background:#111;border:1px solid #333;border-radius:12px;padding:10px;color:#ddd;font-size:13px;line-height:1.5}
+.nameRow{display:grid;grid-template-columns:42px 1fr;gap:8px;align-items:center;margin:7px 0}.num{background:var(--panel);border-radius:12px;text-align:center;padding:12px 0;color:var(--accent);font-weight:900}
+textarea{height:190px;font-size:13px;line-height:1.45}.rowBtns{display:flex;gap:8px;margin-bottom:10px}.sectionTitle{display:flex;justify-content:space-between;align-items:center}
+footer{text-align:center;color:#777;font-size:12px;padding:14px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.timer{font-size:46px}.topBtns{grid-template-columns:1fr 1fr}.player{grid-template-columns:40px 1fr 58px}}
 </style>
 </head>
 <body>
-<header><div><div class="brand">LIFACT</div><h1>ソサイチ出場時間管理</h1></div><button id="reset" class="ghost">初期化</button></header>
+<header><div><div class="brand">LIFACT MANAGER Ver.2</div><h1>出場時間管理</h1></div><button id="resetAll" class="ghost">初期化</button></header>
 <main>
-<section class="card"><h2>試合設定</h2><div class="grid2"><label>前後半<select id="half"><option value="前半">前半</option><option value="後半">後半</option></select></label><label>目標平均<input id="target" type="number" value="20"></label></div><div class="timerBox"><div><div id="timer" class="timer">20:00</div><div class="sub">20分ハーフ / 8人制</div></div><div class="timerBtns"><button id="start" class="primary">開始</button><button id="pause">停止</button><button id="resetHalf">20:00に戻す</button></div></div></section>
-<section class="card"><h2>選手登録</h2><p class="hint">名前を変更して保存。最大16人。</p><div id="edit"></div><button id="saveNames" class="primary wide">選手名を保存</button></section>
-<section class="card"><h2>出場中 8人チェック</h2><div class="status"><span id="count">0人出場中</span><span id="fair">公平度 -</span></div><div id="players" class="players"></div></section>
-<section class="card"><h2>交代おすすめ</h2><p class="hint">出場時間が少ない選手順。迷ったら上を優先。</p><div id="rec"></div></section>
-<section class="card"><h2>試合結果</h2><div class="rowBtns"><button id="copy">結果をコピー</button><button id="csv">CSV保存</button></div><textarea id="result" readonly></textarea></section>
-</main><footer>ホーム画面に追加するとアプリ風に使えます。</footer>
+<section class="card">
+  <div class="sectionTitle"><h2>試合タイマー</h2><span id="halfLabel" class="pill">前半</span></div>
+  <div class="timer" id="timer">20:00</div>
+  <div class="sub">8人制 / 20分ハーフ / 自由交代対応</div>
+  <div class="topBtns">
+    <button id="start" class="primary">開始</button>
+    <button id="pause">停止</button>
+    <button id="switchHalf">後半へ</button>
+    <button id="resetHalf" class="ghost">20:00戻す</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2>交代</h2>
+  <div class="swapBox">
+    <label>OUT（出場中）<select id="outSelect"></select></label>
+    <label>IN（ベンチ）<select id="inSelect"></select></label>
+  </div>
+  <button id="swapBtn" class="primary wide">交代する</button>
+</section>
+
+<section class="card">
+  <div class="status">
+    <span id="onCount" class="pill">出場中 0人</span>
+    <span id="fair" class="pill">公平度 -</span>
+  </div>
+  <div class="grid">
+    <div>
+      <h2>🟢 出場中</h2>
+      <div id="onList" class="list"></div>
+    </div>
+    <div>
+      <h2>🔴 ベンチ</h2>
+      <div id="benchList" class="list"></div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>交代おすすめ</h2>
+  <p class="hint">出場時間が少ない選手順です。</p>
+  <div id="recommend"></div>
+</section>
+
+<section class="card">
+  <h2>選手登録</h2>
+  <p class="hint">名前を変えて保存。最初に出す8人は「出場中にする」を押してください。</p>
+  <div id="edit"></div>
+  <div class="topBtns">
+    <button id="saveNames" class="primary">名前保存</button>
+    <button id="setFirst8">1〜8を出場中</button>
+    <button id="clearOn" class="ghost">全員ベンチ</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2>交代履歴</h2>
+  <div id="log" class="log">まだ履歴はありません。</div>
+</section>
+
+<section class="card">
+  <h2>試合結果</h2>
+  <div class="rowBtns"><button id="copy">結果コピー</button><button id="csv">CSV保存</button></div>
+  <textarea id="result" readonly></textarea>
+</section>
+</main>
+<footer>Safariで開いて「ホーム画面に追加」するとアプリ風に使えます。</footer>
+
 <script>
-const N=16,HALF=1200;let s={names:Array.from({length:N},(_,i)=>"選手"+(i+1)),sec:Array(N).fill(0),on:Array(N).fill(false),rem:HALF,run:false,last:0,half:"前半"};
-function load(){try{let v=localStorage.getItem("lifact_manager_v1");if(v)s={...s,...JSON.parse(v)}}catch(e){}}function save(){localStorage.setItem("lifact_manager_v1",JSON.stringify(s))}
-function $(id){return document.getElementById(id)}function fmt(x){x=Math.max(0,Math.round(x));return Math.floor(x/60)+":"+String(x%60).padStart(2,"0")}function mins(x){return Math.round(x/60)}
+const N=16, HALF=1200;
+let s={names:Array.from({length:N},(_,i)=>"選手"+(i+1)),sec:Array(N).fill(0),on:Array(N).fill(false),rem:HALF,run:false,last:0,half:"前半",logs:[]};
+const $=id=>document.getElementById(id);
+function load(){try{let v=localStorage.getItem("lifact_manager_v2");if(v)s={...s,...JSON.parse(v)}}catch(e){}}
+function save(){localStorage.setItem("lifact_manager_v2",JSON.stringify(s))}
+function fmt(x){x=Math.max(0,Math.round(x));return Math.floor(x/60)+":"+String(x%60).padStart(2,"0")}
+function mins(x){return Math.round(x/60)}
+function playerCard(i){let target=20,m=mins(s.sec[i]),c=m<target-4?"low":m<target?"mid":"good";return `<div class="player ${s.on[i]?'on':''} ${c}"><div class="badge">${i+1}</div><div class="name">${s.names[i]}</div><div class="mins">${m}分</div></div>`}
 function edit(){let h="";s.names.forEach((n,i)=>h+=`<div class="nameRow"><div class="num">${i+1}</div><input data-name="${i}" value="${n}"></div>`);$("edit").innerHTML=h}
 function render(){
- $("timer").textContent=fmt(s.rem);$("half").value=s.half;let target=+$("target").value||20,on=s.on.filter(Boolean).length;$("count").textContent=on+"人出場中"+(on>8?" ⚠️":"");
- let h="";s.names.forEach((n,i)=>{let m=mins(s.sec[i]),c=m<target-4?"low":m<target?"mid":"good";h+=`<div class="player ${s.on[i]?'on':''} ${c}"><div class="badge">${i+1}</div><div class="name">${n}</div><div class="mins">${m}分</div><input class="chk" type="checkbox" data-on="${i}" ${s.on[i]?'checked':''}></div>`});$("players").innerHTML=h;
- document.querySelectorAll("[data-on]").forEach(e=>e.onchange=()=>{s.on[+e.dataset.on]=e.checked;save();render()});
- let arr=s.names.map((n,i)=>({n,i,sec:s.sec[i],on:s.on[i]})).sort((a,b)=>a.sec-b.sec).slice(0,5);$("rec").innerHTML=arr.map((p,i)=>`<div class="rec"><b>${i+1}. ${p.n}${p.on?'（出場中）':''}</b><span>${mins(p.sec)}分</span></div>`).join("");
- let avg=s.sec.reduce((a,b)=>a+b,0)/N,diff=s.sec.reduce((a,b)=>a+Math.abs(b-avg),0)/N,score=s.sec.some(x=>x>0)?Math.max(0,Math.round(100-diff/60*5)):"-";$("fair").textContent="公平度 "+score+(score==="-"?"":"%");
- $("result").value=`LIFACT ソサイチ出場時間\n${s.half}終了時点\n平均：${(avg/60).toFixed(1)}分\n\n`+s.names.map((n,i)=>String(i+1).padStart(2,"0")+" "+n+"："+mins(s.sec[i])+"分").join("\n")
+ $("timer").textContent=fmt(s.rem);$("halfLabel").textContent=s.half;
+ let onIdx=s.names.map((_,i)=>i).filter(i=>s.on[i]), benchIdx=s.names.map((_,i)=>i).filter(i=>!s.on[i]);
+ $("onCount").textContent="出場中 "+onIdx.length+"人"+(onIdx.length!==8?" ⚠️":"");
+ $("onList").innerHTML=onIdx.length?onIdx.map(playerCard).join(""):"<p class='hint'>まだ出場中の選手がいません。</p>";
+ $("benchList").innerHTML=benchIdx.length?benchIdx.map(playerCard).join(""):"<p class='hint'>ベンチはいません。</p>";
+ $("outSelect").innerHTML=onIdx.map(i=>`<option value="${i}">${i+1} ${s.names[i]}</option>`).join("");
+ $("inSelect").innerHTML=benchIdx.map(i=>`<option value="${i}">${i+1} ${s.names[i]}（${mins(s.sec[i])}分）</option>`).join("");
+ let arr=benchIdx.map(i=>({i,sec:s.sec[i]})).sort((a,b)=>a.sec-b.sec).slice(0,5);
+ $("recommend").innerHTML=arr.length?arr.map((p,k)=>`<div class="rec"><b>${k+1}. ${s.names[p.i]}</b><span>${mins(p.sec)}分</span></div>`).join(""):"<p class='hint'>ベンチ選手がいません。</p>";
+ let avg=s.sec.reduce((a,b)=>a+b,0)/N,diff=s.sec.reduce((a,b)=>a+Math.abs(b-avg),0)/N,score=s.sec.some(x=>x>0)?Math.max(0,Math.round(100-diff/60*5)):"-";
+ $("fair").textContent="公平度 "+score+(score==="-"?"":"%");
+ $("log").innerHTML=s.logs.length?s.logs.slice().reverse().map(x=>`<div>${x}</div>`).join(""):"まだ履歴はありません。";
+ $("result").value=`LIFACT 出場時間 Ver.2\\n${s.half} / 残り ${fmt(s.rem)}\\n平均：${(avg/60).toFixed(1)}分\\n\\n`+s.names.map((n,i)=>String(i+1).padStart(2,"0")+" "+n+"："+mins(s.sec[i])+"分").join("\\n");
+ save();
 }
-function tick(){if(!s.run)return;let now=Date.now(),e=Math.floor((now-s.last)/1000);if(e>0){s.last=now;s.rem=Math.max(0,s.rem-e);s.on.forEach((v,i)=>{if(v)s.sec[i]+=e});if(s.rem<=0)s.run=false;save();render()}requestAnimationFrame(tick)}
-load();edit();render();$("start").onclick=()=>{s.run=true;s.last=Date.now();save();tick();render()};$("pause").onclick=()=>{s.run=false;save();render()};$("resetHalf").onclick=()=>{s.run=false;s.rem=HALF;save();render()};$("half").onchange=e=>{s.half=e.target.value;save();render()};$("target").oninput=render;
-$("saveNames").onclick=()=>{document.querySelectorAll("[data-name]").forEach(e=>s.names[+e.dataset.name]=e.value.trim()||("選手"+(+e.dataset.name+1)));save();render();alert("保存しました")};
-$("copy").onclick=async()=>{await navigator.clipboard.writeText($("result").value);alert("コピーしました")};$("csv").onclick=()=>{let rows=[["No","Name","Minutes"],...s.names.map((n,i)=>[i+1,n,mins(s.sec[i])])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="lifact_playtime.csv";a.click()};
-$("reset").onclick=()=>{if(confirm("すべて初期化しますか？")){localStorage.removeItem("lifact_manager_v1");location.reload()}}
+function tick(){if(!s.run)return;let now=Date.now(),e=Math.floor((now-s.last)/1000);if(e>0){s.last=now;s.rem=Math.max(0,s.rem-e);s.on.forEach((v,i)=>{if(v)s.sec[i]+=e});if(s.rem<=0)s.run=false;render()}requestAnimationFrame(tick)}
+load();edit();render();
+$("start").onclick=()=>{s.run=true;s.last=Date.now();render();tick()}
+$("pause").onclick=()=>{s.run=false;render()}
+$("resetHalf").onclick=()=>{s.run=false;s.rem=HALF;render()}
+$("switchHalf").onclick=()=>{s.run=false;s.rem=HALF;s.half=s.half==="前半"?"後半":"前半";$("switchHalf").textContent=s.half==="前半"?"後半へ":"前半へ";render()}
+$("swapBtn").onclick=()=>{let o=$("outSelect").value,i=$("inSelect").value;if(o===""||i===""){alert("OUTとINを選んでください");return}o=+o;i=+i;s.on[o]=false;s.on[i]=true;let t=(s.half+" "+fmt(HALF-s.rem));s.logs.push(`${t}　OUT ${s.names[o]} → IN ${s.names[i]}`);render()}
+$("saveNames").onclick=()=>{document.querySelectorAll("[data-name]").forEach(e=>s.names[+e.dataset.name]=e.value.trim()||("選手"+(+e.dataset.name+1)));render();alert("保存しました")}
+$("setFirst8").onclick=()=>{s.on=s.on.map((_,i)=>i<8);render()}
+$("clearOn").onclick=()=>{s.on=Array(N).fill(false);render()}
+$("copy").onclick=async()=>{await navigator.clipboard.writeText($("result").value);alert("コピーしました")}
+$("csv").onclick=()=>{let rows=[["No","Name","Minutes"],...s.names.map((n,i)=>[i+1,n,mins(s.sec[i])])];let csv=rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\\n");let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="lifact_playtime_v2.csv";a.click()}
+$("resetAll").onclick=()=>{if(confirm("すべて初期化しますか？")){localStorage.removeItem("lifact_manager_v2");location.reload()}}
 </script>
-</body></html>
+</body>
+</html>
